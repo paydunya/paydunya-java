@@ -14,6 +14,7 @@ public class PaydunyaCheckoutInvoice extends PaydunyaCheckout {
     protected String currency = "fcfa";
     protected String cancelUrl = null;
     protected String returnUrl = null;
+    protected String callbackUrl = null;
     protected String invoiceUrl = null;
     protected JSONObject customData = new JSONObject();
     protected String receiptUrl = null;
@@ -29,6 +30,7 @@ public class PaydunyaCheckoutInvoice extends PaydunyaCheckout {
         this.utility = new PaydunyaUtility(paramPaydunyaSetup);
         this.cancelUrl = paramPaydunyaCheckoutStore.getCancelUrl();
         this.returnUrl = paramPaydunyaCheckoutStore.getReturnUrl();
+        this.callbackUrl = paramPaydunyaCheckoutStore.getCallbackUrl();
     }
 
     public void setTotalAmount(double paramDouble) {
@@ -53,6 +55,14 @@ public class PaydunyaCheckoutInvoice extends PaydunyaCheckout {
 
     public String getCancelUrl() {
         return this.cancelUrl;
+    }
+
+    public void setCallbackUrl(String paramString) {
+        this.callbackUrl = paramString;
+    }
+
+    public String getCallbackUrl() {
+        return this.callbackUrl;
     }
 
     public void setInvoiceUrl(String paramString) {
@@ -142,6 +152,7 @@ public class PaydunyaCheckoutInvoice extends PaydunyaCheckout {
         localJSONObject1.put("store", this.store.getSettings());
         this.actions.put("cancel_url", getCancelUrl());
         this.actions.put("return_url", getReturnUrl());
+        this.actions.put("callback_url", getCallbackUrl());
         localJSONObject1.put("actions", this.actions);
 
         JSONObject localJSONObject2 = this.utility

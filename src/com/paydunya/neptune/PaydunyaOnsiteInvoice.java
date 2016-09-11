@@ -25,6 +25,7 @@ public class PaydunyaOnsiteInvoice extends PaydunyaCheckoutInvoice {
         localJSONObject1.put("store", this.store.getSettings());
         localJSONObject5.put("cancel_url", getCancelUrl());
         localJSONObject5.put("return_url", getReturnUrl());
+        localJSONObject5.put("callback_url", getCallbackUrl());
         localJSONObject1.put("actions", localJSONObject5);
 
         localJSONObject2.put("account_alias", paramString);
