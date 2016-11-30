@@ -36,8 +36,6 @@ public class PaydunyaUtility {
             localHttpURLConnection.setRequestMethod("POST");
             localHttpURLConnection.setRequestProperty("Content-Type",
                     "application/json");
-            localHttpURLConnection.setRequestProperty("Content-Length",
-                    Integer.toString(paramString2.length()));
             localHttpURLConnection.setRequestProperty("User-Agent",
                     "PAYDUNYA Checkout API Java client v1 aka Neptune");
             localHttpURLConnection.setRequestProperty("PAYDUNYA-MASTER-KEY",
