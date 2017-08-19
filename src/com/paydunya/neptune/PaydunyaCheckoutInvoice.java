@@ -1,6 +1,7 @@
 package com.paydunya.neptune;
 
 import tk.json.simple.JSONObject;
+import tk.json.simple.JSONArray;
 
 public class PaydunyaCheckoutInvoice extends PaydunyaCheckout {
     protected JSONObject invoice = new JSONObject();
@@ -8,6 +9,7 @@ public class PaydunyaCheckoutInvoice extends PaydunyaCheckout {
     protected JSONObject items = new JSONObject();
     protected double totalAmount = 0.0D;
     protected JSONObject taxes = new JSONObject();
+    protected JSONArray channels = new JSONArray();
     protected int itemsCount = 0;
     protected int taxesCount = 0;
     protected String description = null;
@@ -136,6 +138,18 @@ public class PaydunyaCheckoutInvoice extends PaydunyaCheckout {
         this.taxesCount += 1;
     }
 
+    public void addChannel(String channel) {
+        this.channels.add(channel);
+    }
+
+    public void addChannels(String[] channels) {
+        this.channels = new JSONArray();
+
+        for (String channel : channels) {
+            this.channels.add(channel);
+        }
+    }
+
     public void addCustomData(String paramString, Object paramObject) {
         this.customData.put(paramString, paramObject);
     }
@@ -147,6 +161,7 @@ public class PaydunyaCheckoutInvoice extends PaydunyaCheckout {
         this.invoice.put("taxes", this.taxes);
         this.invoice.put("total_amount", Double.valueOf(getTotalAmount()));
         this.invoice.put("description", getDescription());
+        this.invoice.put("channels", this.channels);
         localJSONObject1.put("invoice", this.invoice);
         localJSONObject1.put("custom_data", this.customData);
         localJSONObject1.put("store", this.store.getSettings());
